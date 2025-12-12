@@ -12,7 +12,7 @@ This repository implements frequent itemset mining and association-rule-based re
 ## Repository contents
 - project_spark.ipynb — Primary Spark-based pipeline: data cleaning, transaction assembly, and PySpark FPGrowth.
 - project_spark_test.ipynb, project_spark_test (2).ipynb — Additional Spark experiments and tests (also include data-cleaning steps in some runs).
-- project_recommendation_system.ipynb — Load association rules (or associationrules.csv) and demonstrate a simple rule-based recommendation helper.
+- project_recommendation_system.ipynb — Load association rules (or associationrules.csv) and demonstrate a simple rule-based recommendation helper. Also the final file that contains everything.
 - data_clean_project.ipynb — Legacy/reference notebook (kept for historical reference). The main cleaning logic has been migrated into the Spark notebooks to integrate with PySpark workflows.
 - associationrules.csv — Precomputed association rules exported from a Spark run (useful to skip recomputing).
 
@@ -46,10 +46,10 @@ pip install pandas numpy matplotlib seaborn scikit-learn pyspark jupyterlab open
    or
    jupyter notebook
 
-5. Open and run the notebooks in this order (Spark-first workflow):
-   - project_spark.ipynb: Primary Spark pipeline that performs data cleaning, transactionization (grouping by InvoiceNo), and runs PySpark FPGrowth. Run this first to produce cleaned transactions and association rules.
-   - project_spark_test.ipynb / project_spark_test (2).ipynb: Use these for experimentation with Spark parameters, alternative cleaning heuristics, or local testing.
-   - project_recommendation_system.ipynb: Load the generated association rules (or associationrules.csv) and test the recommendation helper that ranks consequents by lift/confidence.
+5. Open and run the notebooks 
+   - project_recommendation_system.ipynb: Main file that has all of the main logic.
+      - Has data cleaning, spark system, fp-growth, and rule mining
+      - test recommendation helper that ranks consequents by lift/confidence.
 
 Notes for Spark notebooks:
 - Ensure JAVA_HOME points to a valid JDK (8 or 11).
@@ -58,8 +58,6 @@ Notes for Spark notebooks:
   or set SPARK_DRIVER_MEMORY accordingly.
 - The Spark notebooks include the data cleaning steps (filter cancelled invoices, normalize descriptions, aggregate transactions) so you do not need to run data_clean_project.ipynb before the Spark notebooks.
 
-### Using precomputed rules
-To skip mining, load associationrules.csv into pandas and use project_recommendation_system.ipynb to iterate on recommendation logic.
 
 ## High-level code logic (updated)
 1. Spark-based data cleaning and transactionization
@@ -85,8 +83,3 @@ To skip mining, load associationrules.csv into pandas and use project_recommenda
 - If you get too many trivial rules, raise minSupport/minConfidence or prune by lift.
 - Keep associationrules.csv as a cached artifact to accelerate recommendation development.
 
-## Next steps / Improvements
-- Add a requirements.txt or environment.yml for reproducibility.
-- Add a small sample data file for quick demos.
-- Provide a Dockerfile or binder configuration to standardize the environment.
-- Package the Spark pipeline into a script or job so it can be run non-interactively (e.g., spark-submit).
