@@ -24,7 +24,7 @@ This repository implements frequent itemset mining and association-rule-based re
 
 ### Recommended Python packages
 Install the basics with:
-pip install pandas numpy matplotlib seaborn scikit-learn pyspark jupyterlab openpyxl tqdm
+pip install pandas numpy matplotlib seaborn scikit-learn pyspark jupyterlab openpyxl 
 
 (If you prefer conda, create a conda env and install the same packages via conda/pip.)
 
@@ -39,7 +39,7 @@ pip install pandas numpy matplotlib seaborn scikit-learn pyspark jupyterlab open
    .\.venv\Scripts\activate    # Windows PowerShell
 
 3. Install dependencies:
-   pip install pandas numpy matplotlib seaborn scikit-learn pyspark jupyterlab openpyxl tqdm
+   pip install pandas numpy matplotlib seaborn scikit-learn pyspark jupyterlab openpyxl
 
 4. Launch Jupyter:
    jupyter lab
@@ -48,6 +48,7 @@ pip install pandas numpy matplotlib seaborn scikit-learn pyspark jupyterlab open
 
 5. Open and run the notebooks 
    - project_recommendation_system.ipynb: Main file that has all of the main logic.
+      - needs to have online_retail_II.csv from "https://www.kaggle.com/datasets/mashlyn/online-retail-ii-uci"
       - Has data cleaning, spark system, fp-growth, and rule mining
       - test recommendation helper that ranks consequents by lift/confidence.
 
